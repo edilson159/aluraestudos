@@ -39,7 +39,7 @@ function showForm(addTaskBtn) {
 }
 showForm(addTaskBtn);
 
-function creatTask(formAddTask) {
+function onSubmit(formAddTask) {
   formAddTask.addEventListener("submit", (evento) => {
     evento.preventDefault();
     const task = {
@@ -48,6 +48,7 @@ function creatTask(formAddTask) {
     };
     tasks.push(task);
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    textArea.value = "";
   });
 }
-creatTask(formAddTask);
+onSubmit(formAddTask);
