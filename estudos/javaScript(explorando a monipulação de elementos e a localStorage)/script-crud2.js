@@ -4,6 +4,8 @@ const formAddTask = document.querySelector(".app__form-add-task");
 
 const textArea = document.querySelector(".app__form-textarea");
 
+const removeButon = document.querySelector(".app__form-footer__button--cancel");
+
 const tasks = [];
 
 function creatTask(task) {
@@ -34,7 +36,7 @@ function creatTask(task) {
 
 function showForm(addTaskBtn) {
   addTaskBtn.addEventListener("click", () => {
-    formAddTask.classList.toggle("hidden");
+    formAddTask.classList.remove("hidden");
   });
 }
 showForm(addTaskBtn);
@@ -51,4 +53,13 @@ function onSubmit(formAddTask) {
     textArea.value = "";
   });
 }
-onSubmit(formAddTask);
+onSubmit(removeButon, formAddTask);
+
+function removeForm(removeButon) {
+  removeButon.addEventListener("click", () => {
+    formAddTask.classList.add("hidden");
+    textArea.value = "";
+  });
+}
+
+removeForm(removeButon, addTaskBtn);
