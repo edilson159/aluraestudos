@@ -57,10 +57,11 @@ function onSubmit(formAddTask) {
     textArea.value = "";
   });
 }
-onSubmit(removeButon, formAddTask);
+onSubmit(formAddTask, removeButon);
 
 function removeForm(removeButon, formAddTask) {
-  removeButon.addEventListener("click", () => {
+  removeButon.addEventListener("click", (evento) => {
+    evento.preventDefault();
     formAddTask.classList.add("hidden");
     textArea.value = "";
   });
