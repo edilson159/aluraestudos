@@ -6,7 +6,9 @@ const textArea = document.querySelector(".app__form-textarea");
 
 const removeButon = document.querySelector(".app__form-footer__button--cancel");
 
-const tasks = [];
+const ulTasks = document.querySelector(".app__section-task-list");
+
+const tasks = JSON.parse[localStorage.getItem("tasks")] || [];
 
 function creatTask(task) {
   const li = document.createElement("li");
@@ -32,6 +34,8 @@ function creatTask(task) {
   li.append(svg);
   li.append(Paragraph);
   li.append(button);
+
+  return li;
 }
 
 function showForm(addTaskBtn) {
@@ -63,3 +67,8 @@ function removeForm(removeButon, formAddTask) {
 }
 
 removeForm(removeButon, formAddTask);
+
+tasks.forEach((task) => {
+  const elementTask = createElementTask(task);
+  ulTasks.append(elementTask);
+});
