@@ -4,11 +4,16 @@ const formAddTask = document.querySelector(".app__form-add-task");
 
 const textArea = document.querySelector(".app__form-textarea");
 
-const removeButon = document.querySelector(".app__form-footer__button--cancel");
+const cancelButon = document.querySelector(".app__form-footer__button--cancel");
 
 const ulTasks = document.querySelector(".app__section-task-list");
 
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function updateTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+updateTasks(tasks);
 
 function creatTask(task) {
   const li = document.createElement("li");
@@ -23,11 +28,19 @@ function creatTask(task) {
 
     `;
   const paragraph = document.createElement("p");
-  paragraph.textContent = task.descricao;
-  paragraph.classList.add('app__section-task-list-item-description')
+  paragraph.textContent = task.description;
+  paragraph.classList.add("app__section-task-list-item-description");
 
   const button = document.createElement("button");
-  button.classList.add('app_button-edit')
+  button.classList.add("app_button-edit");
+
+  button.onclick = () => {
+    const newDescription = prompt("Qual é o novo nome da sua tarefa?");
+    if (newDescription) {
+      paragraph.textContent = newDescription;
+      task.description = newDescription;
+    }
+  };
 
   const imgButton = document.createElement("img");
   imgButton.setAttribute("src", "./imagens/edit.png");
@@ -39,6 +52,7 @@ function creatTask(task) {
 
   return li;
 }
+creatTask(tasks);
 
 function showForm(addTaskBtn) {
   addTaskBtn.addEventListener("click", () => {
@@ -51,36 +65,32 @@ function onSubmit(formAddTask) {
   formAddTask.addEventListener("submit", (evento) => {
     evento.preventDefault();
     const task = {
-      descricao: textArea.value,
-      concluida: false,
+      description: textArea.value,
+      completed: false,
     };
     tasks.push(task);
-    const elementTask = creatTask(task)
-    ulTasks.append(elementTask)
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    const elementTask = creatTask(task);
+    ulTasks.append(elementTask);
     textArea.value = "";
-    formAddTask.classList.add('hidden')
+    formAddTask.classList.add("hidden");
   });
 }
-onSubmit(formAddTask, removeButon);
+onSubmit(formAddTask, cancelButon);
 
-function removeForm(removeButon, formAddTask) {
-  removeButon.addEventListener("click", (evento) => {
+function cancelForm(cancelButon, formAddTask) {
+  cancelButon.addEventListener("click", (evento) => {
     formAddTask.classList.add("hidden");
     textArea.value = "";
   });
 }
 
-removeForm(removeButon, formAddTask);
+cancelForm(cancelButon, formAddTask);
 
-function traverseArray (creatTask) {
+function traverseArray(creatTask) {
   tasks.forEach((task) => {
-  console.log(task)
-  const elementTask = creatTask(task);
-  ulTasks.append(elementTask);
-  
-});
+    const elementTask = creatTask(task);
+    ulTasks.append(elementTask);
+  });
 }
 
-traverseArray(creatTask)
-
+traverseArray(creatTask);
