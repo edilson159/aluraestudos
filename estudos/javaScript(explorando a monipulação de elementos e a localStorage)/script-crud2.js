@@ -56,6 +56,8 @@ function creatTask(task) {
 
   li.onclick = () => {
     paragraphDescriptionTask.textContent = task.description;
+    li.classList.add(".app__section-task-list-item-active");
+    li.classList.remove('.app__section-task-list-item')
   };
 
   return li;
