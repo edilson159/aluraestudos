@@ -8,6 +8,10 @@ const cancelButon = document.querySelector(".app__form-footer__button--cancel");
 
 const ulTasks = document.querySelector(".app__section-task-list");
 
+const paragraphDescriptionTask = document.querySelector(
+  ".app__section-active-task-description"
+);
+
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function updateTasks() {
@@ -50,6 +54,10 @@ function creatTask(task) {
   li.append(paragraph);
   li.append(button);
 
+  li.onclick = () => {
+    paragraphDescriptionTask.textContent = task.description;
+  };
+
   return li;
 }
 creatTask(tasks);
@@ -75,7 +83,7 @@ function onSubmit(formAddTask) {
     formAddTask.classList.add("hidden");
   });
 }
-onSubmit(formAddTask, cancelButon);
+onSubmit(formAddTask);
 
 function cancelForm(cancelButon, formAddTask) {
   cancelButon.addEventListener("click", (evento) => {
