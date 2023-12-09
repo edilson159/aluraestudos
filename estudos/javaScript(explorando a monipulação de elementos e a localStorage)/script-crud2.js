@@ -54,15 +54,18 @@ function creatTask(task) {
   li.append(paragraph);
   li.append(button);
 
-  li.onclick = () => {
-    paragraphDescriptionTask.textContent = task.description;
-    li.classList.add(".app__section-task-list-item-active");
-    li.classList.remove('.app__section-task-list-item')
-  };
+  activeTask(li, paragraphDescriptionTask, task);
 
   return li;
 }
 creatTask(tasks);
+
+function activeTask(li, paragraphDescriptionTask, task) {
+  li.onclick = () => {
+    paragraphDescriptionTask.textContent = task.description;
+    li.classList.toggle("app__section-task-list-item-active");
+  };
+}
 
 function showForm(addTaskBtn) {
   addTaskBtn.addEventListener("click", () => {
