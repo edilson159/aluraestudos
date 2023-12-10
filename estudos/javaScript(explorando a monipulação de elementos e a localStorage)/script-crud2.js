@@ -14,6 +14,8 @@ const paragraphDescriptionTask = document.querySelector(
 
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+let SelectedTask = null;
+
 function updateTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -54,21 +56,29 @@ function creatTask(task) {
   li.append(paragraph);
   li.append(button);
 
-  activeTask(li, paragraphDescriptionTask, task);
+  activeTask(li, paragraphDescriptionTask, task, SelectedTask);
 
   return li;
 }
 creatTask(tasks);
 
-function activeTask(li, paragraphDescriptionTask, task) {
+function activeTask(li, paragraphDescriptionTask, task, SelectedTask) {
   li.onclick = () => {
-    paragraphDescriptionTask.textContent = task.description;
     document
       .querySelectorAll(".app__section-task-list-item-active")
       .forEach((Element) => {
         Element.classList.remove("app__section-task-list-item-active");
       });
-    li.classList.toggle("app__section-task-list-item-active");
+
+    if (SelectedTask == task) {
+      paragraphDescriptionTask.textContent = "";
+      SelectedTask = null;
+      return;
+    }
+    SelectedTask = task;
+    paragraphDescriptionTask.textContent = task.description;
+
+    li.classList.add("app__section-task-list-item-active");
   };
 }
 
