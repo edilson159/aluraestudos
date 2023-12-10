@@ -63,6 +63,11 @@ creatTask(tasks);
 function activeTask(li, paragraphDescriptionTask, task) {
   li.onclick = () => {
     paragraphDescriptionTask.textContent = task.description;
+    document
+      .querySelectorAll(".app__section-task-list-item-active")
+      .forEach((Element) => {
+        Element.classList.remove("app__section-task-list-item-active");
+      });
     li.classList.toggle("app__section-task-list-item-active");
   };
 }
