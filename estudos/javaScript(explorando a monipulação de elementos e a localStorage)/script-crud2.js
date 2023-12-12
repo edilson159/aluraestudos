@@ -130,7 +130,7 @@ document.addEventListener("focusFinished", () => {
   if (SelectedTask && liSelectedTask) {
     liSelectedTask.classList.remove("app__section-task-list-item-active");
     liSelectedTask.classList.add('app__section-task-list-item-complete')
-    console.log(liSelectedTask.classList.add("app__section-task-list-item-complete"))
+    console.log(liSelectedTask)
     liSelectedTask.querySelector("button").setAttribute("disabled", "disabled");
   }
 });
