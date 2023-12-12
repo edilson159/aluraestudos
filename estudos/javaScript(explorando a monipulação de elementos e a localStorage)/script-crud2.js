@@ -15,6 +15,7 @@ const paragraphDescriptionTask = document.querySelector(
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 let SelectedTask = null;
+let liSelectedTask = null;
 
 function updateTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -73,9 +74,11 @@ function activeTask(li, paragraphDescriptionTask, task, SelectedTask) {
     if (SelectedTask == task) {
       paragraphDescriptionTask.textContent = "";
       SelectedTask = null;
+      liSelectedTask = null;
       return;
     }
     SelectedTask = task;
+    liSelectedTask = li;
     paragraphDescriptionTask.textContent = task.description;
 
     li.classList.add("app__section-task-list-item-active");
@@ -122,3 +125,12 @@ function traverseArray(creatTask) {
 }
 
 traverseArray(creatTask);
+
+document.addEventListener("focusFinished", () => {
+  if (SelectedTask && liSelectedTask) {
+    liSelectedTask.classList.remove("app__section-task-list-item-active");
+    liSelectedTask.classList.add('app__section-task-list-item-complete')
+    console.log(liSelectedTask.classList.add("app__section-task-list-item-complete"))
+    liSelectedTask.querySelector("button").setAttribute("disabled", "disabled");
+  }
+});
