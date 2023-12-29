@@ -22,9 +22,10 @@ let SelectedTask = null;
 let liSelectedTask = null;
 
 function updateTasks() {
+  console.log('hello')
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
-updateTasks(tasks);
+
 
 function creatTask(task) {
   const li = document.createElement("li");
@@ -38,20 +39,14 @@ function creatTask(task) {
         </svg>
 
     `;
-  const paragraph = document.createElement("p");
-  paragraph.textContent = task.description;
-  paragraph.classList.add("app__section-task-list-item-description");
-
-  const button = document.createElement("button");
-  button.classList.add("app_button-edit");
-
-  button.onclick = () => {
-    const newDescription = prompt("Qual é o novo nome da sua tarefa?");
-    if (newDescription) {
-      paragraph.textContent = newDescription;
-      task.description = newDescription;
-    }
-  };
+    const paragraph = document.createElement("p");
+    paragraph.textContent = task.description;
+    paragraph.classList.add("app__section-task-list-item-description");
+  
+    const button = document.createElement("button");
+    button.classList.add("app_button-edit");
+  
+   test(task, button, paragraph)
 
   const imgButton = document.createElement("img");
   imgButton.setAttribute("src", "./imagens/edit.png");
@@ -61,7 +56,7 @@ function creatTask(task) {
   li.append(paragraph);
   li.append(button);
 
-  if (task.complete) {
+  if (task.completed) {
     li.classList.add("app__section-task-list-item-complete");
     console.log(li);
     button.setAttribute("disabled", "disabled");
@@ -70,8 +65,8 @@ function creatTask(task) {
       li.onclick = () => {
         document
           .querySelectorAll(".app__section-task-list-item-active")
-          .forEach((Element) => {
-            Element.classList.remove("app__section-task-list-item-active");
+          .forEach((element) => {
+            element.classList.remove("app__section-task-list-item-active");
           });
 
         if (SelectedTask == task) {
@@ -83,13 +78,15 @@ function creatTask(task) {
         SelectedTask = task;
         liSelectedTask = li;
         paragraphDescriptionTask.textContent = task.description;
+        console.log(SelectedTask)
 
         li.classList.add("app__section-task-list-item-active");
       };
     }
+    activeTask(li, paragraphDescriptionTask, task, SelectedTask);
   }
 
-  activeTask(li, paragraphDescriptionTask, task, SelectedTask);
+  
 
   return li;
 }
@@ -108,12 +105,14 @@ function onSubmit(formAddTask) {
     const task = {
       description: textArea.value,
       completed: false,
+      
     };
     tasks.push(task);
     const elementTask = creatTask(task);
     ulTasks.append(elementTask);
     textArea.value = "";
     formAddTask.classList.add("hidden");
+    updateTasks();
   });
 }
 onSubmit(formAddTask);
@@ -132,6 +131,7 @@ function traverseArray(creatTask) {
     const elementTask = creatTask(task);
     ulTasks.append(elementTask);
   });
+  
 }
 
 traverseArray(creatTask);
@@ -148,12 +148,12 @@ document.addEventListener("focusFinished", () => {
 });
 
 function removingCompletedTasks(selector) {
-  const removeTasks = (completeOnly) => {
+  const removeTasks = (completeOnly,selector) => {
     //const selector = completeOnly ? '.app__section-task-list-item-complete' : '.app__section-task-list-item'
-    let selector = ".app__section-task-list-item";
+     selector = "app__section-task-list-item";
 
     if (completeOnly) {
-      selector = ".app__section-task-list-item-complete";
+      selector = "app__section-task-list-item-complete";
     }
     document.querySelectorAll("selector").forEach(element => {
       element.remove;
@@ -162,8 +162,18 @@ function removingCompletedTasks(selector) {
 
     updateTasks();
   };
-  btnRemoveCompletede.onclick = () => removeTasks(true);
-  btnRemoveAll.onclick = () => removeTasks(false);
+  btnRemoveCompletede.onclick = () => removeTasks(true,selector);
+  btnRemoveAll.onclick = () => removeTasks(false,selector);
 }
 
 removingCompletedTasks('selector');
+
+function test (task, button, paragraph) {
+  button.onclick = () => {
+    const newDescription = prompt("Qual é o novo nome da sua tarefa?");
+    if (newDescription) {
+      paragraph.textContent = newDescription;
+      task.description = newDescription;
+    }
+};
+} 
