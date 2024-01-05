@@ -6,7 +6,7 @@ const paraghaphDescriptionTask = document.querySelector(
   ".app__section-active-task-description"
 );
 
-const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 let selectedTask = null;
 let liSelectedTask = null;
@@ -16,11 +16,11 @@ function updateTasks() {
 }
 
 const cancelButton = document.querySelector(
-  ".app__form-footer__button--cancel"
-);
+  ".app__form-footer__button--cancel");
 const deleteButton = document.querySelector(
-  ".app__form-footer__button--delete"
-);
+  ".app__form-footer__button--delete");
+const removeCompletedTasksBtn = document.querySelector('#btn-remover-concluidas')
+const removeAllTasksBtn = document.querySelector('#btn-remover-todas')
 
 function createElementTasks(task) {
   const li = document.createElement("li");
@@ -58,7 +58,11 @@ function createElementTasks(task) {
   li.append(paraghaph);
   li.append(button);
 
-  li.onclick = () => {
+  if (task.complet) {
+    li.classList.add('app__section-task-list-item-complete')
+    button.setAttribute('disabled','disabled')
+  } else {
+     li.onclick = () => {
     document
       .querySelectorAll(".app__section-task-list-item-active")
       .forEach((element) => {
@@ -76,6 +80,7 @@ function createElementTasks(task) {
 
     li.classList.add("app__section-task-list-item-active");
   };
+  }
 
   return li;
 }
@@ -116,6 +121,19 @@ document.addEventListener('focusFinished', () => {
     liSelectedTask.classList.remove('app__section-task-list-item-active')
     liSelectedTask.classList.add('app__section-task-list-item-complete')
     liSelectedTask.querySelector('button').setAttribute('disabled','disabled')
+    selectedTask.complet = true
     updateTasks()
   }
 })
+
+const removeTasks = (completedOnly) => {
+  const selector = completedOnly ? '.app__section-task-list-item-complete' : ".app__section-task-list-item"
+  document.querySelectorAll(selector).forEach(element => {
+    element.remove()
+  });
+  tasks = completedOnly ? tasks.filter(task => !task.complet) : []
+  updateTasks()
+}
+
+removeCompletedTasksBtn.onclick = () => removeTasks(true)
+removeAllTasksBtn.onclick = () => removeTasks(false)
