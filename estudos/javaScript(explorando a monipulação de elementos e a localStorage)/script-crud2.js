@@ -85,11 +85,15 @@ function createElementTasks(task) {
   return li;
 }
 
-addTaskBtn.addEventListener("click", () => {
+function showForm(addTaskBtn, formAddTask) {
+  addTaskBtn.addEventListener("click", () => {
   formAddTask.classList.toggle("hidden");
 });
+}
+showForm(addTaskBtn, formAddTask)
 
-formAddTask.addEventListener("submit", (event) => {
+function onSubmit(formAddTask,tasks, ulTasks) {
+  formAddTask.addEventListener("submit", (event) => {
   event.preventDefault();
   const task = {
     description: textArea.value,
@@ -101,20 +105,32 @@ formAddTask.addEventListener("submit", (event) => {
   formAddTask.classList.add("hidden");
   updateTasks();
 });
+}
+onSubmit(formAddTask,tasks, ulTasks)
 
-tasks.forEach((task) => {
+function traverseArray(createElementTasks) {
+  tasks.forEach((task) => {
   const elementTask = createElementTasks(task);
   ulTasks.append(elementTask);
 });
+}
+traverseArray(createElementTasks)
 
-cancelButton.addEventListener("click", () => {
+function cancelTask(cancelButton) {
+  cancelButton.addEventListener("click", () => {
   textArea.value = "";
   formAddTask.classList.add("hidden");
 });
+}
+cancelTask(cancelButton) 
 
-deleteButton.addEventListener("click", () => {
+function deleteTask(deleteButton) {
+  deleteButton.addEventListener("click", () => {
   textArea.value = "";
 });
+}
+deleteTask(deleteButton)
+
 
 document.addEventListener('focusFinished', () => {
   if (selectedTask && liSelectedTask) {

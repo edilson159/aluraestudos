@@ -20,7 +20,7 @@ const audioTempoFinalizado = new Audio("sons/beep.mp3");
 
 
 
-let tempoDecorridoEmSegundos = 30;
+let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
 musica.loop = true;
