@@ -4,12 +4,14 @@ window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 
 const recognition = new SpeechRecognition()
 
+const stopGame = 'game over'
+
 recognition.lang = 'pt-br'
 recognition.start()
 
 recognition.addEventListener('result', onSpeak)
 
-function onSpeak(e) {
+function onSpeak( e) {
     kick = e.results [0] [0].transcript
     console.log(e.results [0] [0].transcript)
     displaysKickOnScreen(kick)

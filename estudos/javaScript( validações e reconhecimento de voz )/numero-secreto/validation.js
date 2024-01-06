@@ -2,7 +2,19 @@ function rightKick(kick) {
   const number = +kick;
 
   if (kickForInvalid(number)) {
-    displayingNumber.innerHTML += "<div>valor invalido</div>";
+    if (kick.toUpperCase() === "GAME OVER") {
+
+      document.body.innerHTML =
+          `
+          <h2>Game Over!!!</h2>
+          <h3>Pressione o botão para jogar novamente</h3>
+          <button id="jogar novamente" class="btn-jogar" >Jogar novamente</button>
+          `
+          document.body.style.backgroundColor = "black";
+  } else {
+
+      displayingNumber.innerHTML += '<div>Valor Inválido</div>';
+  }
     return;
   }
 
@@ -23,6 +35,7 @@ function rightKick(kick) {
     displayingNumber.innerHTML += `<div>O número secreto é maior <i class="fa-solid fa-up-long"></i></div>`;
   }
 }
+
 function kickForInvalid(number) {
   return Number.isNaN(number);
 }
