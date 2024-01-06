@@ -1,28 +1,31 @@
 function rightKick(kick) {
-    const number = +kick
+  const number = +kick;
 
-    if (kickforinvalid(number)) {
-        displayingNumber.innerHTML += '<div>valor inválido</div>'
-    }
+  if (kickForInvalid(number)) {
+    displayingNumber.innerHTML += "<div>valor invalido</div>";
+    return
+  }
 
-    if (numberIsGreaterOrLessThnAllowed(number)) {
-        displayingNumber.innerHTML += `<div>valor invalido: Fale um numero entre ${lowerValue} e ${highestValue}</div>`
-    }
+  if (numberIsHightOrthanAllowed(number)) {
+    displayingNumber.innerHTML += `<div>valor invalido: Fale um número entre ${lowerValue} e ${highestValue}</div>`;
+    return
+  }
 
-    if(number == numberSecret) {
-        document.body.innerHTML = `
-          <h2>Você acertou!</h2>
-          <h3>O número secreto era ${numberSecret}</h3>
-        `
-    }
+  if (number == numberSecret) {
+    document.body.innerHTML = `
+    <h2>Você acertou !</h2>
+    <h3>O número secreto era ${numberSecret}</h3>
+    `;
+  } else if (number > numberSecret) {
+    displayingNumber.innerHTML += `<div>O número secreto é menor <i class="fa-solid fa-down-long"></i></div>`
+  } else {
+    displayingNumber.innerHTML += `<div>O número secreto é maior <i class="fa-solid fa-up-long"></i></div>`
+  }
+}
+function kickForInvalid(number) {
+  return Number.isNaN(number);
 }
 
-
-function kickforinvalid(number) {
-    return Number.isNaN(number)
+function numberIsHightOrthanAllowed(number) {
+  return number > highestValue || number < lowerValue;
 }
-
-function numberIsGreaterOrLessThnAllowed(number) {
-    return number > highestValue || number < lowerValue
-}
-numberIsGreaterOrLessThnAllowed()
