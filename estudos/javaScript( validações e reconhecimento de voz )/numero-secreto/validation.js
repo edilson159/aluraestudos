@@ -32,7 +32,7 @@ function numberIsHightOrthanAllowed(number) {
 }
 
 document.body.addEventListener("click", (e) => {
-  if (e.target.id == "jogar novament") {
+  if (e.target.id == "jogar novamente") {
     window.location.reload();
   }
 });
