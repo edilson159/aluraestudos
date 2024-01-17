@@ -58,7 +58,7 @@ buttonCategoria.forEach((button) => {
 
 function filtrarPorCategoria (filtro) {
   const videos = document.querySelectorAll('.videos__item')
-  videos.forEach((video) => {
+  for (let video of videos) {
     let categoria = video.querySelector('.categoria').textContent.toLowerCase()
     let valorFiltro = filtro.toLowerCase()
 
@@ -67,5 +67,5 @@ function filtrarPorCategoria (filtro) {
     } else {
       video.style.display = 'block'
     }
-  })
+  }
 }
