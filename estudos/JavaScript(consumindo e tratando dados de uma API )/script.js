@@ -31,9 +31,9 @@ async function buscarEMostrarVideos() {
 }
 buscarEMostrarVideos();
 
-const barradePesquisa = document.querySelector('.pesquisar__input')
+const barraDePesquisa = document.querySelector('.pesquisar__input')
 
-barradePesquisa.addEventListener('input', filtarPesquisa )
+barraDePesquisa.addEventListener('input', filtarPesquisa )
 
 function filtarPesquisa() {
 
