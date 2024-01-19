@@ -11,4 +11,4 @@ function frontBooksFilter() {
       : books.filter((book) => book.categoria == category);
   displayBooksOnScreen(filteredBooks);
   console.log(filteredBooks)
-}
+}   
