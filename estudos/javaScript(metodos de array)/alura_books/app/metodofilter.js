@@ -10,7 +10,7 @@ function frontBooksFilter() {
       ? books.filter((book) => book.quantidade > 0)
       : books.filter((book) => book.categoria == category);
   displayBooksOnScreen(filteredBooks);
-  console.log(filteredBooks)
-  console.log(category)
-  console.log(elementBtn)
-}   
+  console.log(filteredBooks);
+  console.log(category);
+  console.log(elementBtn);
+}
