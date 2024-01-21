@@ -6,7 +6,7 @@ function frontBooksFilter() {
   const elementBtn = document.getElementById(this.id);
   const category = elementBtn.value;
   let filteredBooks =
-    category == "indisponivel"
+    category == "disponivel"
       ? books.filter((book) => book.quantidade > 0)
       : books.filter((book) => book.categoria == category);
   displayBooksOnScreen(filteredBooks);
