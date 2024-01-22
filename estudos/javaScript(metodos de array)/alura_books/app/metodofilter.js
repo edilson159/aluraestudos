@@ -7,10 +7,28 @@ function frontBooksFilter() {
   const category = elementBtn.value;
   let filteredBooks =
     category == "disponivel"
-      ? books.filter((book) => book.quantidade > 0)
-      : books.filter((book) => book.categoria == category);
+      ? filterByAvailiability()
+      : filterByCategory(category);
   displayBooksOnScreen(filteredBooks);
-  console.log(filteredBooks);
-  console.log(category);
-  console.log(elementBtn);
+  if (category == "disponivel") {
+    const totalValue = calculateValueTotalByBooksAvailiability(filteredBooks);
+    console.log(totalValue);
+    dispayValueBooks(totalValue);
+  }
+}
+
+function filterByCategory(category) {
+  return books.filter((book) => book.categoria == category);
+}
+
+function filterByAvailiability() {
+  return books.filter((book) => book.quantidade > 0);
+}
+
+function dispayValueBooks(totalValue) {
+  elementPriceBooksAvailability.innerHTML = `
+  <div class="livros__disponiveis">
+        <p>Todos os livros disponíveis por R$ <span id="valor">${totalValue}</span></p>
+      </div>
+  `;
 }
