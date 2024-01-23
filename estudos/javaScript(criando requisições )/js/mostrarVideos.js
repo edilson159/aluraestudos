@@ -20,6 +20,10 @@ function constructCard() {
   return video;
 }
 
+constructCard()
+
 async function videolists () {
     const list = await conectApi.videoList()
 }
+
+videolists()
