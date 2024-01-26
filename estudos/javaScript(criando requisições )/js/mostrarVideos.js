@@ -1,29 +1,35 @@
-import { conectApi } from "./conectApi";
+import { connectsApi } from "./conectApi.js";
 
 
-const list = document.querySelector("[data-list]");
+const lists = document.querySelector("[data-list]");
 
-function constructCard() {
+function constructCard(itemVideo) {
   const video = document.createElement("li");
-  video.className = "video__item";
+  video.className = "videos__item";
   video.innerHTML = `
-  <iframe width="100%" height="72%" src="https://www.youtube.com/embed/pA-EgOaF23I"
+  <iframe width="100%" height="72%" src=${itemVideo.url}
   title="YouTube video player" frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
   allowfullscreen></iframe>
 <div class="descricao-video">
-  <img src="./img/logo.png" alt="logo canal alura">
-  <h3>Qual é o melhor hardware para programação com Mario Souto</h3>
-  <p>236 mil visualizações</p>
+  <img src=${itemVideo.imagem} alt="logo canal alura">
+  <h3>${itemVideo.titulo}</h3>
+  <p>${itemVideo.descricao}</p>
 </div>
   `;
   return video;
 }
 
-constructCard()
+
 
 async function videolists () {
-    const list = await conectApi.videoList()
+    const list = await connectsApi.videoList()
+     
+    list.forEach(video => {
+      const li =  constructCard(video)              
+      lists.append(li)
+ });
+
 }
 
 videolists()
