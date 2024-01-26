@@ -1,6 +1,5 @@
 import { connectsApi } from "./conectApi.js";
 
-
 const lists = document.querySelector("[data-list]");
 
 function constructCard(itemVideo) {
@@ -20,16 +19,13 @@ function constructCard(itemVideo) {
   return video;
 }
 
+async function videolists() {
+  const list = await connectsApi.videoList();
 
-
-async function videolists () {
-    const list = await connectsApi.videoList()
-     
-    list.forEach(video => {
-      const li =  constructCard(video)              
-      lists.append(li)
- });
-
+  list.forEach((video) => {
+    const li = constructCard(video);
+    lists.append(li);
+  });
 }
 
-videolists()
+videolists();
