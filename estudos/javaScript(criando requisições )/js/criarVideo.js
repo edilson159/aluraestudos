@@ -1,7 +1,7 @@
 import { connectsApi } from "./conectApi.js";
 
 const form = document.querySelector("[data-formulario]");
-
+console.log(form);
 async function creatVideo(event) {
   event.preventDefault();
   const imagem = document.querySelector("[data-imagem]").value;
