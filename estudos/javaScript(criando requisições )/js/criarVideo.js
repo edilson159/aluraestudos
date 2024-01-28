@@ -9,9 +9,9 @@ async function creatVideo(event) {
   const title = document.querySelector("[data-titulo]").value;
   const description = Math.floor(Math.random() * 10).toString();
 
-  await connectsApi.creatVideos(title, description, url,imagem)
+  await connectsApi.creatVideos(title, description, url, imagem);
 
-  window.location.href = '../pages/enviar-video.html'
+  window.location.href = '../pages/envio-concluido.html'
 }
 
-form.addEventListener('submit', event => creatVideo(event))
+form.addEventListener("submit", (event) => creatVideo(event));
