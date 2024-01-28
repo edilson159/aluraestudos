@@ -33,9 +33,9 @@ buscarEMostrarVideos();
 
 const barraDePesquisa = document.querySelector('.pesquisar__input')
 
-barraDePesquisa.addEventListener('input', filtarPesquisa )
+barraDePesquisa.addEventListener('input', filtrarPesquisa )
 
-function filtarPesquisa() {
+function filtrarPesquisa () {
 
     const videos = document.querySelectorAll('.videos__item');
     const valorFiltro = barraDePesquisa.value.toLowerCase();
