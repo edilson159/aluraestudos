@@ -1,6 +1,8 @@
 async function videoList() {
   const connection = await fetch("http://localhost:3000/videos");
   const convertedConnection = await connection.json();
+  
+  
   return convertedConnection;
 }
 
@@ -37,9 +39,8 @@ async function creatVideos(title, description, url, imagem) {
 //       : "block";
 //   });
 // }
-
-async function searchVideos() {
   const filterValue = document.querySelector("[data-pesquisa]").value;
+async function searchVideos() {
   const connection = await fetch(
     `http://localhost:3000/videos?q=${filterValue}`
   );
