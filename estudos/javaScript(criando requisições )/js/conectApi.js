@@ -18,7 +18,9 @@ async function creatVideos(title, description, url, imagem) {
       url: url,
       imagem: imagem,
     }),
-  });
+  }); if (!connection.ok) {
+    throw new Error('Não foi possivel enviar o video')
+  }
   const convertedConnection = await connection.json();
   return convertedConnection;
 }

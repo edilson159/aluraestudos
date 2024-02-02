@@ -20,12 +20,18 @@ export default function constructCard(itemVideo) {
 }
 
 async function videolists() {
+  try {
   const list = await connectsApi.videoList();
 
   list.forEach((video) => {
     const li = constructCard(video);
     lists.append(li);
   });
+}catch {
+  lists.innerHTML = `
+   <h2 class='mensagem__titulo'> Não foi possivel carregar a lista de videos</h2>
+  `
+}
 }
 
 videolists();
