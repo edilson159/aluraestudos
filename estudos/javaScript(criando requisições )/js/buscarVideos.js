@@ -7,14 +7,9 @@ async function searchVideo(event) {
   const search = await connectsApi.searchVideos(filterValue);
 
   const list = document.querySelector("[data-list]");
-  search.forEach((element) =>
+  search.forEach((itemVideo ) =>
     list.appendChild(
-      constructCard(
-        element.title,
-        element.description,
-        element.url,
-        element.imagem
-      )
+      constructCard(itemVideo)
     )
   );
 }
