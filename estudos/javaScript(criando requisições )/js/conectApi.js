@@ -39,13 +39,13 @@ async function creatVideos(title, description, url, imagem) {
 //       : "block";
 //   });
 // }
-  const filterValue = document.querySelector("[data-pesquisa]").value;
-async function searchVideos() {
+  
+async function searchVideos(filterValue) {
   const connection = await fetch(
     `http://localhost:3000/videos?q=${filterValue}`
   );
   const convertedConnection = connection.json();
-
+ console.log(`http://localhost:3000/videos?q=${filterValue}`,'hello');
   return convertedConnection;
 }
 
