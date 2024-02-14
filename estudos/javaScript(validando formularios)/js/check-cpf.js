@@ -1,12 +1,15 @@
 export default function itsACpf(fild) {
   const cpf = fild.value.replace(/\.|-/g, "");
-  checkRepeatingNumbers(cpf)
-  console.log(checkRepeatingNumbers(cpf));
+  if (validateRepeatingDigit(cpf) || validateOneDigit(cpf) || validateSecundDigit(cpf)) {
+    console.log('Esse CPF não existe');
+  } else {
+    console.log('Esse CPF  existe');
+  }
+  console.log(validateRepeatingDigit(cpf));
 }
 
-function checkRepeatingNumbers(cpf) {
-  const repeatingNumbers =
-  [
+function validateRepeatingDigit(cpf) {
+  const repeatingDigit = [
     "00000000000",
     "11111111111",
     "22222222222",
@@ -18,5 +21,47 @@ function checkRepeatingNumbers(cpf) {
     "88888888888",
     "99999999999",
   ];
-  return repeatingNumbers.includes(cpf)
+  return repeatingDigit.includes(cpf);
 }
+
+function validateOneDigit(cpf) {
+  let sum = 0;
+  let multiplier = 10;
+
+  for (let size = 0; size < 9; size++) {
+    sum += cpf[size] * multiplier;
+    multiplier--;
+  }
+
+  sum = (sum * 10) % 11;
+
+  if (sum == 10 || sum == 11) {
+    sum = 0;
+  }
+
+  return sum != cpf[9];
+}
+
+
+function validateSecundDigit(cpf) {
+  let sum = 0;
+  let multiplier = 11;
+
+  for (let size = 0; size < 10; size++) {
+    sum += cpf[size] * multiplier;
+    multiplier--;
+  }
+
+  sum = (sum * 10) % 11;
+
+  if (sum == 10 || sum == 11) {
+    sum = 0;
+  }
+
+  return sum != cpf[10];
+
+
+  
+}
+
+
