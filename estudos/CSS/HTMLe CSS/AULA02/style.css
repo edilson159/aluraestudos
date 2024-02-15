@@ -1,54 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   height: 100vh;
   box-sizing: border-box;
-  background-color: #000 ;
-  color: #F6F6F6;
+  background-color: #000;
+  color: #f6f6f6;
 }
 
 .titulo-destaque {
-    color: #22D4FD;
+  color: #22d4fd;
 }
 
 a {
-    border-radius: 4px;
-    background-color: #22d4fd;
-    margin: 30px;
-    color:#F6F6F6;
+  margin: 36px;
+  top: 681px;
 }
 
 .container {
-    margin: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  margin: 10% 19%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .container__conteudo {
-    width: 615px;
+  width: 615px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .container__conteudo__titulo {
-    font-size: 36px;
-    font-family: "Krona One", sans-serif;
+  font-size: 36px;
+  font-family: "Krona One", sans-serif;
 }
 
 .container__conteudo__texto {
-    font-family:  "Montserrat", sans-serif;
-    font-size: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
 }
 
 responsivo-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.container__links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container__link {
+  background-color: #22d4fd;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+  width: 280px;
+  text-align: center;
+  height: 40px;
+  border-radius: 16px;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 21.5px 0px;
+  gap: 16px;
+  text-decoration: none;
+}
