@@ -1,11 +1,8 @@
 export default function itsACpf(fild) {
   const cpf = fild.value.replace(/\.|-/g, "");
   if (validateRepeatingDigit(cpf) || validateOneDigit(cpf) || validateSecundDigit(cpf)) {
-    console.log('Esse CPF não existe');
-  } else {
-    console.log('Esse CPF  existe');
+    fild.setCustomValidity('Esse CPF não é valido!')
   }
-  console.log(validateRepeatingDigit(cpf));
 }
 
 function validateRepeatingDigit(cpf) {
