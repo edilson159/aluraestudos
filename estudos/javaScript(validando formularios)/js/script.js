@@ -20,7 +20,7 @@ form.addEventListener('submit', (e) => {
 
 fildsTheForm.forEach((fild) => {
   fild.addEventListener("blur", () => checkFild(fild));
-  fild.addEventListener("ivalid", (event) => event.preventDefault());
+  fild.addEventListener("invalid", (event) => event.preventDefault());
 });
 
 const errorTypes = [
