@@ -57,8 +57,6 @@ function validateSecundDigit(cpf) {
 
   return sum != cpf[10];
 
-
-  
 }
 
 
