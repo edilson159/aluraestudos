@@ -14,18 +14,21 @@ body {
   color: #f6f6f6;
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.cabecalho {
   width: 299px;
   height: 29px;
   top: 65px;
   left: 360px;
-
+  padding: 2% 0% 0% 19% ;
 }
 
-header p {
+.cabecalho__menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cabecalho__menu__link {
   font-family: Montserrat;
   font-size: 24px;
   font-weight: 600;
@@ -34,7 +37,8 @@ header p {
   text-align: left;
   height: 29px;
   top: 65px;
- 
+  color:#22D4FD;
+  text-decoration: none;
 }
 
 .home{
@@ -105,6 +109,8 @@ a {
 }
  
 .container__link {
+  display: flex;
+  justify-content: center;
   border: 2px solid #22D4FD;
   color: #fff;
   font-family: "Montserrat", sans-serif;
@@ -117,7 +123,11 @@ a {
   padding: 16px;
   gap: 16px;
   text-decoration: none;
-  align-items: center;
+  
+}
+
+.container__link:hover {
+  background-color: #272727;
 }
 
 .container img {
@@ -131,7 +141,9 @@ a {
 }
 
 .footer {
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 1920px;
   height: 80px;
   top: 1071px;
@@ -149,3 +161,10 @@ a {
   color: #000000;
 }
 
+
+
+.container__link img {
+  width: 32px;
+  height: 32px;
+
+}
