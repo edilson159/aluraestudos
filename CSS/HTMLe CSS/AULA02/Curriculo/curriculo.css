@@ -3,9 +3,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-  --color-principal:#000;
-  --color-secundary:#22D4FD;
-  --color-tertiary:#f6f6f6 ;
+    --color-principal:#000;
+    --color-secundary:#22D4FD;
+    --color-tertiary:#f6f6f6 ;
 }
 
 * {
@@ -85,6 +85,17 @@ body {
     margin-left: 50px;
     padding: 0% 10% 10% 0%;
     padding-right: 10%;
+  }
+
+   li {
+    font-family: Monserrat;
+    font-weight: 400;
+    font-size: 24px;
+  }
+
+  .container__list a {
+    text-decoration: none;
+    color: var(--color-secundary);
   }
 
   .footer {
